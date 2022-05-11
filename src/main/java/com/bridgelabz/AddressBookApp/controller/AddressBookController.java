@@ -23,9 +23,9 @@ public class AddressBookController {
         return iAddressBookService.hello();
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<ResponseDTO> getAddress() {
-        return iAddressBookService.getAddress();
+    @GetMapping(value = { "/list/{id}", "/list/", "/list" })
+    public ResponseEntity<ResponseDTO> getAddress(@PathVariable Optional<String> id) {
+        return iAddressBookService.getAddress(id);
     }
 
     @PostMapping("/create")

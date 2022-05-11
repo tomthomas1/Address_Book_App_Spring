@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IAddressBookService {
     ResponseEntity<ResponseDTO> hello();
 
-    ResponseEntity<ResponseDTO> getAddress();
+    ResponseEntity<ResponseDTO> getAddress(Optional<String> id);
 
     ResponseEntity<ResponseDTO> createAddress(AddressBookDTO address);
 
