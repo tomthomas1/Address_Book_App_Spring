@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface IAddressBookService {
     ResponseEntity<ResponseDTO> hello();
 
-    ResponseEntity<ResponseDTO> getAddress(Optional<String> id) throws AddressNotFound;
+    ResponseEntity<ResponseDTO> getAddress(Optional<Integer> id) throws AddressNotFound;
 
     ResponseEntity<ResponseDTO> createAddress(AddressBookDTO address);
 
-    ResponseEntity<ResponseDTO> updateAddress(String id, AddressBookDTO address) throws AddressNotFound;
+    ResponseEntity<ResponseDTO> updateAddress(Optional<Integer> id, AddressBookDTO address) throws AddressNotFound;
 
-    ResponseEntity<ResponseDTO> deleteAddress(String id) throws AddressNotFound;
+    ResponseEntity<ResponseDTO> deleteAddress(Optional<Integer> id) throws AddressNotFound;
 }
