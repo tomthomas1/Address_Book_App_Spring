@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -29,12 +30,12 @@ public class AddressBookController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> createAddress(@RequestBody AddressBookDTO address) {
+    public ResponseEntity<ResponseDTO> createAddress(@Valid @RequestBody AddressBookDTO address) {
         return iAddressBookService.createAddress(address);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable String id, @RequestBody AddressBookDTO address) {
+    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable String id,@Valid @RequestBody AddressBookDTO address) {
         return iAddressBookService.updateAddress(id, address);
     }
 
