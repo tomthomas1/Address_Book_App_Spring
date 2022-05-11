@@ -2,6 +2,7 @@ package com.bridgelabz.AddressBookApp.controller;
 
 import com.bridgelabz.AddressBookApp.dto.AddressBookDTO;
 import com.bridgelabz.AddressBookApp.dto.ResponseDTO;
+import com.bridgelabz.AddressBookApp.exception.AddressNotFound;
 import com.bridgelabz.AddressBookApp.model.AddressBook;
 import com.bridgelabz.AddressBookApp.service.IAddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AddressBookController {
     }
 
     @GetMapping(value = { "/list/{id}", "/list/", "/list" })
-    public ResponseEntity<ResponseDTO> getAddress(@PathVariable Optional<String> id) {
+    public ResponseEntity<ResponseDTO> getAddress(@PathVariable Optional<String> id) throws AddressNotFound {
         return iAddressBookService.getAddress(id);
     }
 
@@ -35,12 +36,12 @@ public class AddressBookController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable String id,@Valid @RequestBody AddressBookDTO address) {
+    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable String id,@Valid @RequestBody AddressBookDTO address) throws AddressNotFound {
         return iAddressBookService.updateAddress(id, address);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteAddress(@PathVariable String id) {
+    public ResponseEntity<ResponseDTO> deleteAddress(@PathVariable String id) throws AddressNotFound{
         return iAddressBookService.deleteAddress(id);
     }
 }

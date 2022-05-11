@@ -2,6 +2,7 @@ package com.bridgelabz.AddressBookApp.service;
 
 import com.bridgelabz.AddressBookApp.dto.AddressBookDTO;
 import com.bridgelabz.AddressBookApp.dto.ResponseDTO;
+import com.bridgelabz.AddressBookApp.exception.AddressNotFound;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
@@ -9,11 +10,11 @@ import java.util.Optional;
 public interface IAddressBookService {
     ResponseEntity<ResponseDTO> hello();
 
-    ResponseEntity<ResponseDTO> getAddress(Optional<String> id);
+    ResponseEntity<ResponseDTO> getAddress(Optional<String> id) throws AddressNotFound;
 
     ResponseEntity<ResponseDTO> createAddress(AddressBookDTO address);
 
-    ResponseEntity<ResponseDTO> updateAddress(String id, AddressBookDTO address);
+    ResponseEntity<ResponseDTO> updateAddress(String id, AddressBookDTO address) throws AddressNotFound;
 
-    ResponseEntity<ResponseDTO> deleteAddress(String id);
+    ResponseEntity<ResponseDTO> deleteAddress(String id) throws AddressNotFound;
 }
