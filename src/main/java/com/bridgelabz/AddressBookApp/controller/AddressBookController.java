@@ -20,7 +20,7 @@ import java.util.Optional;
 public class AddressBookController {
 
     @Autowired
-    IAddressBookService iAddressBookService;
+    private IAddressBookService iAddressBookService;
 
     // This method will return the default welcome message.
     @GetMapping("/home")
@@ -31,7 +31,7 @@ public class AddressBookController {
 
     // This method will call the service layer to return the address records. It will throw a custom exception in case the
     // the address record with the given id is not found.
-    @GetMapping(value = { "/list/{id}", "/list/", "/list" })
+    @GetMapping(value = { "/list/{id}", "/list" })
     public ResponseEntity<ResponseDTO> getAddress(@PathVariable Optional<Integer> id) throws AddressNotFound {
         log.info(" We are calling the service layer to return address book records ");
         return iAddressBookService.getAddress(id);
@@ -48,7 +48,7 @@ public class AddressBookController {
     // This method will call the service layer to update certain records in the db. It will return an error message if the
     // address record to be updated has any invalid fields.
     @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable Optional<Integer> id,@Valid @RequestBody AddressBookDTO address) throws AddressNotFound {
+    public ResponseEntity<ResponseDTO> updateAddress(@PathVariable int id,@Valid @RequestBody AddressBookDTO address) throws AddressNotFound {
         log.info(" We are calling the service layer to update the record ");
         return iAddressBookService.updateAddress(id, address);
     }
@@ -56,8 +56,16 @@ public class AddressBookController {
     // This method will call the service layer to delete records. It will throw a custom exception in case the
     // the address record with the given id is not found.
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteAddress(@PathVariable Optional<Integer> id) throws AddressNotFound{
+    public ResponseEntity<ResponseDTO> deleteAddress(@PathVariable int id) throws AddressNotFound{
         log.info(" We are calling the service layer to delete an address book record ");
         return iAddressBookService.deleteAddress(id);
     }
+
+    // This method will call the service layer to find an address record by city
+    @GetMapping("/city/{city}")
+    public ResponseEntity<ResponseDTO> findAddressByCity(@PathVariable String city) throws AddressNotFound {
+        log.info(" We are calling the service layer to find the address by city name");
+        return iAddressBookService.findAddressByCity(city);
+    }
+
 }

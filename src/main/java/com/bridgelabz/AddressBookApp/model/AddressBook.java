@@ -7,25 +7,24 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class AddressBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int id;
-    public String name;
-    public String address;
-    String city;
-    String state;
-    int zip;
+    private int id;
+    private String name;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
 
     @Column(name = "phone_number")
-    long phoneNumber;
-    String email;
+    private String phoneNumber;
+    private String email;
 
     public AddressBook(int id, AddressBookDTO address) {
         super();

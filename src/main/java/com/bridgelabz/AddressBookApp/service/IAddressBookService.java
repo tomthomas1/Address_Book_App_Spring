@@ -14,7 +14,9 @@ public interface IAddressBookService {
 
     ResponseEntity<ResponseDTO> createAddress(AddressBookDTO address);
 
-    ResponseEntity<ResponseDTO> updateAddress(Optional<Integer> id, AddressBookDTO address) throws AddressNotFound;
+    ResponseEntity<ResponseDTO> updateAddress(int id, AddressBookDTO address) throws AddressNotFound;
 
-    ResponseEntity<ResponseDTO> deleteAddress(Optional<Integer> id) throws AddressNotFound;
+    ResponseEntity<ResponseDTO> deleteAddress(int id) throws AddressNotFound;
+
+     ResponseEntity<ResponseDTO> findAddressByCity(String city) throws AddressNotFound;
 }

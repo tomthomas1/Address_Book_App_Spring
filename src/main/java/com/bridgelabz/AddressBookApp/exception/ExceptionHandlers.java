@@ -16,7 +16,7 @@ public class ExceptionHandlers {
     @ExceptionHandler(AddressNotFound.class)
     public ResponseEntity<ResponseDTO> handleAddressNotFound(AddressNotFound error) {
         ResponseDTO response = new ResponseDTO("ERROR: Invalid pattern", error.getMessage());
-        return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -24,7 +24,7 @@ public class ExceptionHandlers {
         List<String> message = error.getAllErrors().stream()
                 .map(errorObject -> errorObject.getDefaultMessage())
                 .collect(Collectors.toList());
-        ResponseDTO response = new ResponseDTO("ERROR: Invalid pattern", message);
+        ResponseDTO response = new ResponseDTO("ERROR: Exception while processing REST request", message);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
     }
 }
